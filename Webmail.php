@@ -5,7 +5,7 @@
  * @version 0.1
  */
 
-namespace jellingsen\webmail\Webmail;
+namespace jellingsen\webmail;
 
 
 class Webmail
