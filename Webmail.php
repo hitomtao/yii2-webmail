@@ -13,6 +13,7 @@ class Webmail
 {
 	private $_server;
 	private $_connection;
+	private $_mailboxes = [];
 
 	public function __construct($username, $password)
 	{
@@ -27,13 +28,14 @@ class Webmail
 		$this->_connection = $this->_server->authenticate($username, $password);
 	}
 
-	public function showMailBoxes()
+	public function structure()
 	{
 		$mailboxes = $this->_connection->getMailboxes();
 
 		foreach ($mailboxes as $mailbox) {
-			// $mailbox is instance of \Ddeboer\Imap\Mailbox
-			printf('Mailbox %s has %s messages', $mailbox->getName(), $mailbox->count());
+			$this->_mailboxes[str_replace('.', '/', ucfirst($mailbox->getName()))] = $mailbox->count();
 		}
+
+		return $this->_mailboxes;
 	}
 }
