@@ -17,6 +17,7 @@ class Webmail
 	private $_server;
 	private $_connection;
 	private $_mailboxes = [];
+	private $_structure;
 	public $active;
 	public $server = 'mail.google.com';
 	public $port = 993;
@@ -63,6 +64,14 @@ class Webmail
 		$this->active = $folder;
 	}
 
+	private function generateStructure()
+	{
+		$mailboxes = $this->_connection->getMailboxes();
+		$this->_structure = new Structure();
+		foreach ($mailboxes as $mailbox) {
+			$this->_structure->addFolder($mailbox->getName(), $mailbox->count());
+		}
+	}
 
 	/**
 	 * Returns folder structure of current mailbox
@@ -73,13 +82,19 @@ class Webmail
 	public function getMenuItems()
 	{
 		if(!isset($this->_connection)) throw new Exception('You need to authenticate a user before requesting structure');
-		$mailboxes = $this->_connection->getMailboxes();
-		$structure = new Structure();
-		foreach ($mailboxes as $mailbox) {
-			$structure->addFolder($mailbox->getName(), $mailbox->count());
-		}
+		return $this->_structure->getStructure();
+	}
 
-		return $structure->generate();
+	/**
+	 * Get the default folder for this mail.
+	 * Usually Inbox
+	 *
+	 * @return string
+	 */
+	public function getDefaultFolder()
+	{
+		if(!isset($this->_structure)) $this->generateStructure();
+		return $this->_structure->getMenuItems()[0]['name'];
 	}
 
 	/**

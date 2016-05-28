@@ -14,10 +14,10 @@ class Structure
 	public function addFolder($folder, $count)
 	{
 		$folders = explode('.', $folder);
-		$this->_structure[ucfirst(strtolower(end($folders)))] = $count;
+		$this->_structure[] = ['name' => ucfirst(strtolower(end($folders))), 'mails' => $count];
 	}
 
-	public function generate()
+	public function getStructure()
 	{
 		return $this->_structure;
 	}
