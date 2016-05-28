@@ -107,9 +107,9 @@ class Webmail
 		$start = '<ul class="webmail_menu">';
 		$end = '</ul>';
 		$content = '';
-		foreach($this->getMenuItems() as $name => $mails)
+		foreach($this->getMenuItems() as $item)
 		{
-			$content .= '<li>'.$name.' ('.$mails.')</li>';
+			$content .= '<li>'.$item['name'].' ('.$item['mails'].')</li>';
 		}
 		return $start.$content.$end;
 	}
