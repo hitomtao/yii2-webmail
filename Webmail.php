@@ -17,9 +17,9 @@ class Webmail
 	private $_server;
 	private $_connection;
 	private $_mailboxes = [];
-	public $server;
+	public $server = 'mail.google.com';
 	public $port = 993;
-	public $flag = '/imap/ssl/novalidate-cert';
+	public $flag = '/imap/ssl/validate-cert';
 	public $parameters = [];
 
 	/**
