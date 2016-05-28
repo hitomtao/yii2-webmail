@@ -19,7 +19,7 @@ class Webmail
 	public $flag = '/imap/ssl/novalidate-cert';
 	public $parameters = [];
 
-	public function __construct($username, $password)
+	public function authenticate($username, $password)
 	{
 		$this->_server = new Server($this->server, $this->port, $this->flag, $this->parameters);
 		$this->_connection = $this->_server->authenticate($username, $password);
@@ -35,4 +35,5 @@ class Webmail
 
 		return $this->_mailboxes;
 	}
+
 }
