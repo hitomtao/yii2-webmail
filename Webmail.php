@@ -70,7 +70,7 @@ class Webmail
 	 * @return Structure
 	 * @throws Exception
 	 */
-	public function structure()
+	public function getMenuItems()
 	{
 		if(!isset($this->_connection)) throw new Exception('You need to authenticate a user before requesting structure');
 		$mailboxes = $this->_connection->getMailboxes();
@@ -84,7 +84,7 @@ class Webmail
 
 	/**
 	 * Generate HTML folder menu
-	 * 
+	 *
 	 * @return string
 	 */
 	public function generateMenu()
@@ -92,7 +92,7 @@ class Webmail
 		$start = '<ul class="webmail_menu">';
 		$end = '</ul>';
 		$content = '';
-		foreach($this->structure() as $name => $mails)
+		foreach($this->getMenuItems() as $name => $mails)
 		{
 			$content .= '<li>'.$name.' ('.$mails.')</li>';
 		}
