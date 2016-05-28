@@ -17,6 +17,7 @@ class Webmail
 	private $_server;
 	private $_connection;
 	private $_mailboxes = [];
+	public $active;
 	public $server = 'mail.google.com';
 	public $port = 993;
 	public $flag = '/imap/ssl/validate-cert';
@@ -53,6 +54,17 @@ class Webmail
 	}
 
 	/**
+	 * Set the active folder
+	 *
+	 * @param $folder
+	 */
+	public function setActive($folder)
+	{
+		$this->active = $folder;
+	}
+
+
+	/**
 	 * Returns folder structure of current mailbox
 	 *
 	 * @return Structure
@@ -68,5 +80,22 @@ class Webmail
 		}
 
 		return $structure->generate();
+	}
+
+	/**
+	 * Generate HTML folder menu
+	 * 
+	 * @return string
+	 */
+	public function generateMenu()
+	{
+		$start = '<ul class="webmail_menu">';
+		$end = '</ul>';
+		$content = '';
+		foreach($this->structure() as $name => $mails)
+		{
+			$content .= '<li>'.$name.' ('.$mails.')</li>';
+		}
+		return $start.$content.$end;
 	}
 }
