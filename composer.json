@@ -1,0 +1,34 @@
+{
+  "name": "jellingsen/yii2-webmail",
+  "type": "yii2-extension",
+
+  "description": "Integrating mailbox in your yii2 project",
+  "keywords": ["yii2", "mail", "webmail"],
+
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Jorgen Ellingsen",
+      "email": "jorgen@ellera.no",
+      "homepage": "http://www.ellera.no"
+    }
+  ],
+
+  "minimum-stability": "stable",
+  "support": {
+    "source": "https://github.com/jellingsen/yii2-webmail",
+    "issues": "https://github.com/jellingsen/yii2-webmail/issues"
+  },
+
+  "require": {
+    "php": ">=5.4.0",
+
+    "yiisoft/yii2": "2.0.*"
+  },
+
+  "autoload": {
+    "psr-4": {
+      "jellingsen\\webmail\\": ""
+    }
+  }
+}
