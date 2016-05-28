@@ -94,7 +94,7 @@ class Webmail
 	public function getDefaultFolder()
 	{
 		if(!isset($this->_structure)) $this->generateStructure();
-		return $this->_structure->getMenuItems()[0]['name'];
+		return $this->getMenuItems()[0]['name'];
 	}
 
 	/**
